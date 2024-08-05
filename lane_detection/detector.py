@@ -43,6 +43,8 @@ class LaneDetector:
         Returns:
             numpy.ndarray: Masked image with region of interest.
         """
+        if image is None :
+            raise ValueError("image can not be none")
         
         height, width = image.shape[:2]
         polygon = np.array([
@@ -166,7 +168,7 @@ class LaneDetector:
 
         canny_image = self.canny(frame)
         cropped_image = self.region_of_interest(canny_image)
-        lines = cv2.HoughLinesP(cropped_image, 1, np.pi / 180, 100, minLineLength=50, maxLineGap=5)
+        lines = cv2.HoughLinesP(cropped_image, 10, np.pi / 180, 100, minLineLength=50, maxLineGap=5)
         avg_lines = self.avg_slope_intercept(frame, lines)
         filled_lane_image = self.fill_lane(frame, avg_lines)
         combo_image = cv2.addWeighted(frame, 0.8, filled_lane_image, 1, 1)
