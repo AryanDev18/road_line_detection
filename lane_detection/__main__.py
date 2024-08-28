@@ -48,5 +48,5 @@ def main(video_path):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    video_file_path = 'D:/dummy project/test03.mov'  # Update this path with your video file path
+    video_file_path = 'C:/Users/aryan dev tanwar/OneDrive/Desktop\project/test01.mov'  # Update this path with your video file path
     main(video_file_path)
